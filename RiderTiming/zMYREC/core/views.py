@@ -121,11 +121,6 @@ def usrdta(request):
     evetp = eventType.objects.all()
     event_list = eventName.objects.all()
     updModel = userPerfData()
-    atmpt1 = []
-    atmpt2 = []
-    atmpt3 = []
-    atmpt4 = []
-    atmpt5 = []
     records_to_insert = []
     if request.method == 'POST':
         usr_id1 = User.objects.get(username=request.user.username)
