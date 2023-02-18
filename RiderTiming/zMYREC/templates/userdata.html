@@ -2,7 +2,6 @@
 
 {% block content %}
 
-
 <div class="container-fluid">
     <form action="" method="POST">
         {% csrf_token %}
@@ -19,23 +18,12 @@
                         <option value="{{type.id}}">{{type.Name}}</option>>
                     {% endfor %}           
                 </select>
-
-                <select id="category">
-                    <option value="0">--Select Event Type--</option>  
-                    <option value="fruits">Fruits</option>
-                    <option value="vegetables">Vegetables</option>
-                </select>
-
             </div>
+            <input type="hidden" id="jsevelst" name="jsevelst" value="{{ event_list }}">
             <div>
                 <select name="event_nm" id="event_nm" class="form-control" required>
                     <option disabled="true" selected>--Select Event Name--</option>
-                    {% for event in event_list %}
-                        <option value="{{event.id}}">{{event.Name}}</option>>
-                    {% endfor %}           
                 </select>
-
-                <select id="item"></select>
             </div>
             <div class="row">
                 <div class="col">

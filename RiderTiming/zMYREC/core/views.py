@@ -1,9 +1,11 @@
 from .models import userProfile, eventType, eventName, userPerfData
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.core import serializers
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
 from django.contrib.auth.decorators import login_required
+import json
 # import pyodbc
 
 # Create your views here.
@@ -120,12 +122,18 @@ def add_event(request):
 def usrdta(request):
     evetp = eventType.objects.all()
     event_list = eventName.objects.all()
+
+    tmpJson = serializers.serialize("json",event_list)
+    tmpObj = json.loads(tmpJson)
+    eventjson = json.dumps(tmpObj)
+
     updModel = userPerfData()
     records_to_insert = []
     if request.method == 'POST':
         usr_id1 = User.objects.get(username=request.user.username)
         usr_id = request.user.id
-        event_id = eventName.objects.get(id = request.POST['event_nm'])
+        event_id = request.POST['event_nm']
+        dte = request.POST['dte']
 
         lap1 = request.POST['ip1']
         lap2 = request.POST['ip2']
@@ -153,36 +161,6 @@ def usrdta(request):
             "lap10" : lap10,
             "total" : total
         }
-        
-        # if lap1 != '':
-        #     atmpt1.append(usr_id)
-        #     atmpt1.append(event_id.id)
-        #     atmpt1.append(lap1)
-        #     records_to_insert.append(atmpt1)
-        # if  lap2 != '':
-        #     atmpt2.append(usr_id)
-        #     atmpt2.append(event_id.id)
-        #     atmpt2.append(lap2)
-        #     records_to_insert.append(atmpt2)
-        # if lap3 != '':
-        #     atmpt3.append(usr_id)
-        #     atmpt3.append(event_id.id)
-        #     atmpt3.append(lap3)
-        #     records_to_insert.append(atmpt3)
-        # if lap4 != '':
-        #     atmpt4.append(usr_id)
-        #     atmpt4.append(event_id.id)
-        #     atmpt4.append(lap4)
-        #     records_to_insert.append(atmpt4)
-        # if lap5 != '':
-        #     atmpt5.append(usr_id)
-        #     atmpt5.append(event_id.id)
-        #     atmpt5.append(lap5)
-        #     records_to_insert.append(atmpt5)
-
-        print(records_to_insert)
-
-        
 
         # tbl_name = "core_userperfdata"
 
@@ -201,7 +179,7 @@ def usrdta(request):
         #     raise
 
 
-    return render(request, "userdata.html", {'event_list':event_list, 'types':evetp})
+    return render(request, "userdata.html", {'event_list':eventjson, 'types':evetp})
 
 def perdta(request):
     event_list = eventName.objects.all()
