@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-4" style="background-color: beige;"></div>
+        <div class="col-4">
+            <h1>{{request.user.username}}</h1>
+            <table>
+                <tr>
+                    <td><label for="heartrate">Resting Heart Rate</label></td>
+                    <td><td><input type="text" name="heartrate" id="heartrate"></td></td>
+                </tr>
+                <tr>
+                    <td><label for="weight">Weight</label></td>
+                    <td><td><input type="text" name="weight" id="Weight"></td></td>
+                </tr>
+                <tr>
+                    <td><label for="height">Height</label></td>
+                    <td><td><input type="text" name="height" id="height"></td></td>
+                </tr>
+            </table>
+            <hr>
+            <div class="row">
+                <div class="col"><input type="submit" value="Clear"></div>
+                <div class="col"><input type="submit" value="Cancel"></div>
+                <div class="col"><input type="submit" value="Submit"></div>
+            </div>
+        </div>
+        <div class="col-4" style="background-color: beige;"></div>
+    </div>
+</div>
+
+{% endblock content %}

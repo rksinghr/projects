@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="container-fluid">
+    <form action="" method="POST">
+        {% csrf_token %}
+    <div class="row">
+        <div class="col-4" style="background-color: beige;"></div>
+        <div class="col-4">
+            <div>
+                <input type="date" name="dte" id="dte" class="form-control">
+            </div>
+            <div>
+                <select name="event_tp" id="event_tp" class="form-control" required>
+                    <option disabled="true" selected>--Select Event Type--</option>
+                    {% for type in types %}
+                        <option value="{{type.id}}">{{type.Name}}</option>>
+                    {% endfor %}           
+                </select>
+            </div>
+            <div>
+                <select name="event_nm" id="event_nm" class="form-control" required>
+                    <option disabled="true" selected>--Select Event Name--</option>
+                    {% for event in event_list %}
+                        <option value="{{event.id}}">{{event.Name}}</option>>
+                    {% endfor %}           
+                </select>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <input type="text" name="ip1" id="ip1" class="form-control" placeholder="Lap #01">
+                    <input type="text" name="ip2" id="ip2" class="form-control" placeholder="Lap #02">
+                    <input type="text" name="ip3" id="ip3" class="form-control" placeholder="Lap #03">
+                    <input type="text" name="ip4" id="ip4" class="form-control" placeholder="Lap #04">
+                    <input type="text" name="ip5" id="ip5" class="form-control" placeholder="Lap #05">
+                </div>
+                <div class="col">
+                    <input type="text" name="ip6" id="ip6" class="form-control" placeholder="Lap #06">
+                    <input type="text" name="ip7" id="ip7" class="form-control" placeholder="Lap #07">
+                    <input type="text" name="ip8" id="ip8" class="form-control" placeholder="Lap #08">
+                    <input type="text" name="ip9" id="ip9" class="form-control" placeholder="Lap #09">
+                    <input type="text" name="ip10" id="ip10" class="form-control" placeholder="Lap #10">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col" style="text-align: center;"><input type="button" value="Clear" class="btn btn-secondary"></div>
+                <div class="col" style="text-align: center;"><input type="button" value="Cancel" class="btn btn-secondary"></div>
+                <div class="col" style="text-align: center;"><input type="submit" value="Submit" class="btn btn-secondary"></div>
+            </div>   
+        </div>
+        <div class="col-4" style="background-color: beige;"></div>
+    </div>
+    </form>
+</div>
+
+{% endblock content %}

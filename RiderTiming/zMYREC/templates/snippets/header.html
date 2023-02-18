@@ -1,0 +1,41 @@
+<body>
+<style type="text/css">
+	@media (min-width: 768px) {
+	  html {
+	    font-size: 16px;
+	  }
+	}
+
+	.search-bar{
+		max-width: 500px;
+		width: 100%;
+	}
+	form{
+		width: 100%;
+	}
+</style>
+<div class="container">
+<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+	<span class="fs-4">
+		{% if request.user.is_authenticated %}
+			<p class="m-auto">Hello, <b>{{request.user.username}}</b></p>
+		{% endif %}
+	</span>
+	<ul class="nav nav-pills justify-content-end">
+		{% if request.user.is_authenticated %}
+			<li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+			<li class="nav-item"><a class="nav-link" href="{% url 'profile' %}">Account</a></li>
+			<li class="nav-item"><a class="nav-link" href="{% url 'signout' %}">Logout</a></li>
+		{% else %}
+			<li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+			<li class="nav-item"><a class="nav-link" href="{% url 'signin' %}">Login</a></li>
+			<li class="nav-item"><a class="btn btn-outline-primary" href="{% url 'signup' %}">Register</a>
+		{% endif %}
+      </ul>
+</nav>
+</div>
+<!-- End Header -->
+</body>
+<script type="text/javascript">
+	document.getElementById("id_q").value = "{{query}}"
+</script>

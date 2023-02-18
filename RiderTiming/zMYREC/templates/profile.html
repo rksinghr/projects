@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+  <form action="" method="POST">
+    {% csrf_token %}
+    <div class="row" style="text-align: center;">
+      <h1>Profile</h1>
+      <p>Please fill in this form to complete/update your profile</p>
+      <div style="color: red;">
+        {% for message in messages %}
+        <h5>{{message}}</h5>
+        {% endfor %}
+      </div>
+      <div class="row">
+        <div class="col"></div>
+        <div class="col">
+          <div class="container" style="padding: 5px; text-align: left;">
+            <label for="fname">First Name</label>
+            <input type="input" name="fname" id="fname" class="form-control" required value = {{user_profile.userFirstName}}>
+          </div>
+          <div class="container" style="padding: 5px; text-align: left;">
+            <label for="lname">Last Name</label>
+            <input type="input" name="lname" id="lname" class="form-control" required value = {{user_profile.userLastName}}>
+          </div>
+          <div class="container" style="padding: 5px; text-align: left;">
+            <label for="mname">Middle Name / Initials</label>
+            <input type="input" name="mname" id="mname" class="form-control" required value = {{user_profile.userMiddleName}}>
+          </div>
+          <div class="container" style="padding: 5px; text-align: left;">
+            <label for="dob">Date Of Birth</label>
+            <input type="date" name="dob1" id="dob1" required value = {{user_profile.userDOB}}>
+            <input type="input" name="dob" id="dob" class="form-control" required value = {{user_profile.userDOB}}>
+          </div>
+          <div class="container" style="padding: 5px; text-align: left;">
+            <label for="sex">Gender</label>
+            <input type="input" name="sex" id="sex" class="form-control" required value = {{user_profile.userGender}}>
+          </div>
+          <div class="container" style="padding: 5px; text-align: left;">
+            <label for="ph">Phone</label>
+            <input type="input" name="ph" id="ph" class="form-control" required value = {{user_profile.userPhone}}>
+          </div>
+          <div class="container" style="padding: 5px; text-align: left;">
+            <label for="add">Address</label>
+            <input type="input" name="add" id="add" class="form-control" required value = {{user_profile.userAddress}}>
+          </div>
+          <div class="container" style="padding: 5px; text-align: left;">
+            <label for="dist">District</label>
+            <input type="input" name="dist" id="dist" class="form-control" required value = {{user_profile.userDistrict}}>
+          </div>
+          <div class="container" style="padding: 5px; text-align: left;">
+            <label for="state">State</label>
+            <input type="input" name="state" id="state" class="form-control" required value = {{user_profile.userState}}>
+          </div>
+          <div class="container" style="padding: 5px; text-align: left;">
+            <label for="pin">PIN Code</label>
+            <input type="input" name="pin" id="pin" class="form-control" required value = {{user_profile.userPinCode}}>
+          </div>
+          <div class="container" style="padding: 5px; text-align: left;">
+            <label for="rstate">Name of Representing State</label>
+            <input type="input" name="rstate" id="rstate" class="form-control" required value = {{user_profile.userRepState}}>
+          </div>
+          <div class="container" style="padding: 5px; text-align: left;">
+            <label for="uid">Aadhar#</label>
+            <input type="input" name="uid" id="uid" class="form-control" required value = {{user_profile.userAadhar}}>
+          </div>
+    
+          <button class="btn btn-primary form-control" type="submit">Submit</button>
+        </div>
+        <div class="col"></div>
+      </div>      
+    </div>
+  </form>
+</div>
+{% endblock content %}

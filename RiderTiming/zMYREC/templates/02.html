@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page-2</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        function typefield(){
+            typeid = document.getElementById('event_tp').value;
+            window.location = "?typeid="+typeid
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <h3>This is Page-1</h3>
+            <h3>Select Event Type</h3>
+            <table>
+                <tr><td>
+                    <select name="event_tp" id="event_tp" class="form-select" required onchange="typefield()">
+                        <option disabled selected="true">--Select Event Type--</option>
+                        {% for ev in ev_types %}
+                            <option value="{{ev.id}}" {% if request.GET.typeid == ev.id|lower %}selected{% endif %}>{{ev.Name}}</option>>
+                        {% endfor %}           
+                    </select>
+                </td></tr>
+            </table>
+            <hr>
+            <h3>Select Event Name</h3>
+            <table>
+                <tr><td>
+                    <select name="event_nm" id="event_nm" class="form-select" required>
+                        <option disabled selected="true">--Select Event--</option>
+                        {% for evn in ev_names %}
+                            <option value="{{evn.id}}">{{evn.Name}}</option>>
+                        {% endfor %}           
+                    </select>
+                </td></tr>
+            </table>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    
+</body>
+</html>

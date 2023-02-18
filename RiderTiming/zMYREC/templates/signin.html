@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+      <form action="" method="POST">
+        {% csrf_token %}
+        <div class="container" style="text-align: center;">
+          <h1>Login</h1>
+          <p>Enter your user name and password.</p>
+          <div style="color: red;">
+            {% for message in messages %}
+            <h5>{{message}}</h5>
+            {% endfor %}
+          </div>
+          <div class="container" style="padding: 10px;">
+              <input type="input" placeholder="User name" name="usr" id="usr" class="form-control" required>
+          </div>
+          <div class="container" style="padding: 10px;">
+              <input type="password" placeholder="Enter Password" name="pwd" id="pwd" class="form-control" required>
+          </div>
+          <div class="container" style="padding: 10px;">
+              <button class="btn btn-primary form-control" type="submit">Login</button>
+          </div>
+          <p>First time user, create an account here -> <a href="/signup">Register</a></p>
+        </div>
+      </form>
+    </div>
+    <div class="col-sm-4"></div>
+  </div>
+</div>
+{% endblock content %}
+
