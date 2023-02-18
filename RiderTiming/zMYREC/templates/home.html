@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col" style="background-color: antiquewhite;"><h5>Welcome to the exciting world of cycling!</h5></div>
+        <div class="col" style="background-color: aquamarine;"></div>
+        <div class="col"  style="background-color: azure; text-align-last: right;">
+            <a href="{% url 'add_event' %}">Create Event</a>
+            <a href="{% url 'mytime' %}">Performance</a>
+            <a href="{% url 'perdata' %}">Personal</a>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

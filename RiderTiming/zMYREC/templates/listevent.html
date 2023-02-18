@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      Existing Events:
+      <hr>
+      {% for event in event_list %}
+        {{event}}<br>
+      {% endfor %}
+    </div>
+    <div class="col-sm-6">
+      <form action="" method="POST">
+        {% csrf_token %}
+        <div class="container" style="text-align: center;">
+          <h1>Create New Event</h1>
+          <div style="color: red;">
+            {% for message in messages %}
+            <h5>{{message}}</h5>
+            {% endfor %}
+          </div>
+          <div class="container" style="padding: 10px;">
+              <!-- <input type="input" placeholder="Event Type" name="event_tp" id="event_tp" class="form-control" required> -->
+              <select name="event_tp" id="event_tp" class="form-control" required>
+                <option disabled="true" selected>-- Select Event Type --</option>
+                {% for event in event_list %}
+                    <option value="{{event.id}}">{{event.Name}}</option>>
+                {% endfor %}           
+            </select>
+          </div>
+          <div class="container" style="padding: 10px;">
+              <input type="input" placeholder="Event Name" name="event_nm" id="event_nm" class="form-control" required>
+          </div>
+          <div class="container" style="padding: 10px;">
+            <input type="input" placeholder="Event Description" name="event_desc" id="event_desc" class="form-control" required>
+          </div>
+
+          <div class="row" style="padding: 10px;">
+            <div class="col">
+              <button class="btn btn-primary form-control" type="submit">Create</button>
+            </div>
+            <div class="col">
+              <button class="btn btn-secondary form-control" type="submit">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
